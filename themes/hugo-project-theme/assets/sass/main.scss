@@ -1,0 +1,14 @@
+// Bootstrap Stylesheet
+@import 'node_modules/bootstrap/scss/bootstrap.scss';
+
+//Slick
+$slick-font-path: 'fonts/slick';
+$slick-loader-path: 'fonts/slick';
+@import 'node_modules/slick-carousel/slick/slick.scss';
+@import 'node_modules/slick-carousel/slick/slick-theme.scss';
+
+// Fontawesome fonts
+$fa-font-path: 'fonts/webfonts';
+@import 'node-modules/@fortawesome/fontawesome-free/scss/fontawesome.scss';
+@import 'node-modules/@fortawesome/fontawesome-free/scss/brands.scss';
+@import 'node-modules/@fortawesome/fontawesome-free/scss/solid.scss';
