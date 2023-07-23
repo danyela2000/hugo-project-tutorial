@@ -19,5 +19,6 @@ bin-release/
 # Hugo
 public/
 node_modules/
+resources/
 
 # Backup Files
