@@ -6,8 +6,136 @@
         <title>Hugo Project</title>
     </head>
     <body>
-        <h1>This is a new heading!</h1>
-        <p>Aceasta este o noua modificare facuta in develop.</p>
+        <h1>Hugo templating test</h1>
+
+        <!-- Variabile -->
+        <h2>Variabile</h2> 
+        <p>Acesta este titlul site-ului: {{.Title}}</p>
+        <!-- Declarare variabila -->
+        <p>{{ $text:= "Acesta este un text."}}</p>
+        <!-- Afisare variabila -->
+        <p>{{ $text }}</p>
+        <!-- Redeclarare variabila -->
+        <p>{{ $text = "Acesta este un alt text."}}</p>
+        <p>{{ $text }}</p>
+
+        <!-- Functii -->
+        <h2>Functii</h2> 
+        <p> 3-4= {{ sub 3 4}}</p>
+
+        <!-- Logica  -->
+            <!-- Iterare cu bucla range-->
+            <h2>Iterare cu bucla range</h2>  
+            {{ $array := slice "ana" "are" "mere"}}
+
+            {{ range $array }}
+                <!-- reprezinta fiecare element din array -->
+                {{ . }}
+            {{ end }}  <br>
+            
+            {{ range $elem_val:= $array }}
+            <!-- in $elem_val va fi stocat fiecare element din array-->
+                {{ $elem_val }}
+            {{ end }} <br><br>
+           
+            {{ range $index, $elem_val:= $array}}
+              {{ $index }}  {{ $elem_val }}<br>
+            {{ end }} <br>
+
+            <!-- iterate through a map  -->
+            {{ $map:= dict 
+                "first name" "Ana"
+                "last name" "Lugojana"
+            }}
+
+            {{ range $key, $val:= $map}}
+                {{ $key }}  {{ $val}} <br>
+            {{ end }} <br>
+          
+            <h2>Structuri de date</h2>  
+            <!-- slice (array)-->
+           {{ $array:= slice "val1" "val2" "val3" "val4"}}
+           <p>This is an array in Hugo templating : $array:= slice "val1" "val2" "val3" "val4"<br> 
+              The Output: {{ $array }}</p>
+        
+           <!-- map -->
+            {{ $map:= dict 
+                "key1" "val1"
+                "key2" "val2"
+                "key3" "val3"
+                "key4" "val4"
+            }}
+
+            <p>This is a map in Hugo templating :<br> 
+                $map:= dict <br>
+                "key1" "val1"<br>
+                "key2" "val2"<br>
+                "key3" "val3"<br>
+                "key4" "val4"<br>
+                <br> 
+                The Output:  {{ $map }}</p>
+
+           <p>This is the element from the array,  at index 2 : {{ index $array 2}}</p>
+           <p>This is the element from the map,  at "key2" key : {{ index $map "key2"}} or {{$map.key2}}</p>
+         
+           <!-- Conditionale -->
+          <h2>Conditionale</h2>  
+          {{ $x:= 2}}
+          {{ $y:= 0}} 
+          {{ $name:= "diana"}}
+        
+          <h3>with</h3><br>
+
+          {{ with $x }}
+                <h4>{{ . }}</h4>
+          {{end}}<br>
+        
+          <h3>with ... else</h3><br>
+
+          {{ with $y}}
+          <h4>{{ . }}</h4>
+          {{ else }}
+          <h4> Variable $y is 0 or does not exist.</h4>
+          {{end}}<br>
+          
+          <h3>if...else</h3>
+          {{ if eq $name "diana" }}
+                <h4>This person is Diana</h4><br>
+
+                {{ else if eq $name "ana" }}
+                <h4>This person is Ana</h4><br>
+
+                {{ else }}
+                <h4>This is an unknown person.</h4><br>
+          {{ end }}
+        
+
+          <h3>if...and</h3><br>
+          {{ $number:= 5 }}
+          
+          {{ if and ( ge $number 4) ( le $number 6) }}
+             <p>This is number 4, 5, or 6</p>
+          {{ else }}
+          <p>This is another number</p>
+          {{ end }}
+
+          <h3>if...or</h3><br>
+          
+          {{ if or ( le $number 4) ( le $number 5) }}
+             <p>This could be number 1, 2 or 3</p>
+          {{ else }}
+          <p>This is another number</p>
+          {{ end }}
+          
+        <h3>Using data from data/test.yml file with Hugo templating</h3>
+        {{ with .Site.Data.test}}
+        <p>This is the slice (array): {{.users}}</p>
+        
+        {{ range $user:= .users }}
+          <p>This is the user map : {{ $user }}</p>
+          <p>My name is {{ $user.name }}, I'm {{$user.age}} old and I'm {{$user.height}} meters tall.</p>
+        {{ end }}
+        {{ end }}  
     </body>
 </html>
 {{end}}

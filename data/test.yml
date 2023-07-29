@@ -1,0 +1,12 @@
+users:
+  - name: Dana Andreea
+    age: 23
+    height: 1.70 
+
+  - name: Georgeta Ioana
+    age: 27
+    height: 1.67
+
+  - name: Cristian Daniel
+    age: 30
+    height: 1.80   
